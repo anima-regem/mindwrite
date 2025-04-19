@@ -99,7 +99,11 @@ function Sidebar({ onEntrySelect }) { // Add onEntrySelect prop
         {entries.length === 0 && !error && <p className="p-2">No entries yet.</p>}
         <ul>
           {entries.map((entry, index) => (
-            <li key={index} onClick={() => handleEntryClick(entry)} className='entry-item p-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer'> {/* Adjusted styling */}
+            <li
+              key={index}
+              onClick={() => handleEntryClick(entry)}
+              className='entry-item p-2 border-b border-gray-200 hover:bg-gray-100 cursor-pointer'
+            >
               <span className='entry-name'>
                 {
                   // entry with extension removed
@@ -129,9 +133,7 @@ function Sidebar({ onEntrySelect }) { // Add onEntrySelect prop
           <p className="text-xs text-gray-500">No activity data to display.</p> // Show a message if data is empty
         )}
       </div>
-      {/* Add button or mechanism to create a new entry */}
-      {/* <button onClick={handleNewEntry}>New Entry</button> */}
-    </div>
+    </div> // Add missing closing div tag
   );
 }
 

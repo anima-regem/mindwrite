@@ -5,7 +5,7 @@ const fontSizes = [14, 18, 21, 24];
 const defaultFont = "Lato";
 const defaultFontSize = 18;
 
-const Footer = ({ onFontChange, onFontSizeChange }) => {
+const Footer = ({ onFontChange, onFontSizeChange, currentContent }) => { // Add currentContent prop
   const [selectedFont, setSelectedFont] = useState(defaultFont);
   const [selectedFontSize, setSelectedFontSize] = useState(defaultFontSize);
   const [timeLeft, setTimeLeft] = useState(15 * 60);
@@ -45,18 +45,26 @@ const Footer = ({ onFontChange, onFontSizeChange }) => {
   };
 
   const toggleFullscreen = () => {
-    // const elem = document.documentElement;
-    // if (!document.fullscreenElement) {
-    //   elem.requestFullscreen().then(() => setIsFullscreen(true));
-    // } else {
-    //   document.exitFullscreen().then(() => setIsFullscreen(false));
-    // }
     if (!isFullscreen){
       window.runtime.WindowFullscreen();
       setIsFullscreen(true);
     } else {
       window.runtime.WindowUnfullscreen();
       setIsFullscreen(false);
+    }
+  };
+
+  const handleGptClick = async () => {
+    if (currentContent) {
+      // Construct the URL with the content as a query parameter
+      const encodedContent = encodeURIComponent(currentContent);
+      const chatGptUrl = `https://chat.openai.com/?q=${encodedContent}`; // Example URL, adjust if needed
+
+      // Open the URL in a new tab
+      window.runtime.BrowserOpenURL(chatGptUrl);
+    } else {
+      console.log("No content to send to ChatGPT");
+      // Optionally provide feedback to the user
     }
   };
 
@@ -96,7 +104,6 @@ const Footer = ({ onFontChange, onFontSizeChange }) => {
           {formatTime(timeLeft)}
         </button>
 
-        
         <button
           onClick={() => setTimeLeft(15 * 60)}
           className= {isRunning ?"rounded text-xl text-black hover:bg-gray-100" :  "rounded text-xl text-gray-500"}
@@ -109,6 +116,14 @@ const Footer = ({ onFontChange, onFontSizeChange }) => {
           className="px-3 py-1 rounded text-xs hover:bg-gray-100"
         >
           {isFullscreen ? "minimize" : "fullscreen"}
+        </button>
+
+        <button
+          onClick={handleGptClick}
+          className="py-1 rounded text-xs hover:bg-gray-100"
+          title="Ask ChatGPT"
+        >
+          chatgpt
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Editor.css";
 import { ReadFromFile, WriteToFile } from "../../../wailsjs/go/main/App"; // Import Go functions
 
-const EditorComp = ({ font, fontSize, selectedEntry }) => {
+const EditorComp = ({ font, fontSize, selectedEntry, onContentChange }) => {
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,10 +11,13 @@ const EditorComp = ({ font, fontSize, selectedEntry }) => {
   const textRef = useRef(text);
   const saveIntervalRef = useRef(null); // Ref to hold the interval ID
 
-  // Update textRef whenever text state changes
+  // Update textRef and call onContentChange whenever text state changes
   useEffect(() => {
     textRef.current = text;
-  }, [text]);
+    if (onContentChange) {
+      onContentChange(text);
+    }
+  }, [text, onContentChange]);
 
   const listOfPlaceholders = [
     "start writing here...",
@@ -57,19 +60,16 @@ const EditorComp = ({ font, fontSize, selectedEntry }) => {
         try {
           const content = await ReadFromFile(selectedEntry);
           setText(content); // Update the editor state
-          textRef.current = content; // Ensure textRef is also updated immediately
         } catch (err) {
           console.error(`Error reading file ${selectedEntry}:`, err);
           setError(`Failed to load entry: ${selectedEntry}.`);
           setText(""); // Clear text on load error
-          textRef.current = "";
         } finally {
           setIsLoading(false);
         }
       } else {
         // No entry selected (e.g., initial load or after deleting all entries)
         setText("");
-        textRef.current = "";
         setError(null);
       }
 
@@ -127,7 +127,7 @@ const EditorComp = ({ font, fontSize, selectedEntry }) => {
 
   const handleTextChange = (e) => {
     setText(e.target.value);
-    // textRef is updated by its own dedicated effect
+    // textRef and onContentChange are handled by the effect listening to `text`
   };
 
   return (
