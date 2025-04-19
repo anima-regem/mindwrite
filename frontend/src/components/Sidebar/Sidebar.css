@@ -1,0 +1,28 @@
+.sidebar {
+  width: 100%; /* Let ResizableBox control width */
+  height: 100%; /* Let ResizableBox control height */
+  background-color: #ffffff; /* Example background */
+  /* box-shadow: -2px 0 5px rgba(0,0,0,0.1); /* Optional shadow on the left */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Allow vertical scroll if needed */
+}
+
+/* Optional: Style for content inside the sidebar */
+.sidebar-content {
+  /* Add styles for links, titles, etc. */
+}
+
+.entry-item {
+  /* ... existing styles ... */
+}
+
+.entry-name {
+ /* ... existing styles ... */
+}
+
+.error-message {
+  color: red;
+  padding: 10px;
+}

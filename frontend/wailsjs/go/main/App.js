@@ -5,3 +5,15 @@
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
+
+export function ListEntries() {
+  return window['go']['main']['App']['ListEntries']();
+}
+
+export function ReadFromFile(arg1) {
+  return window['go']['main']['App']['ReadFromFile'](arg1);
+}
+
+export function WriteToFile(arg1, arg2) {
+  return window['go']['main']['App']['WriteToFile'](arg1, arg2);
+}

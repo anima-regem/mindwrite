@@ -1,0 +1,70 @@
+/* Add styles for the main app layout if needed */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Styles for react-resizable west handle (when sidebar is on the right) */
+.react-resizable-handle-w {
+  position: absolute;
+  width: 10px; /* Width of the handle area */
+  height: 100%;
+  top: 0; /* Align to top */
+  left: -5px; /* Position handle slightly outside the box to the left */
+  cursor: col-resize;
+  display: flex; /* Use flexbox for centering dots */
+  align-items: center; /* Center dots vertically */
+  justify-content: center; /* Center dots horizontally */
+  /* Remove default background/border */
+  background: transparent;
+  border: none;
+}
+
+/* Style for the visual indicator (vertical bar with dots) */
+.react-resizable-handle-w::before {
+  content: '⋮'; /* Vertical ellipsis character */
+  display: block;
+  width: 10px; /* Match handle width */
+  height: 30px; /* Height of the dotted area */
+  line-height: 30px; /* Center the character vertically */
+  text-align: center;
+  color: #aaa; /* Color of the dots */
+  font-size: 14px; /* Adjust size of dots */
+  background-color: #e2e8f0; /* Light gray background for the handle bar */
+  border-radius: 5px; /* Rounded corners for the bar */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Ensure the main content area flexes correctly */
+.flex-1 {
+    flex: 1 1 0%; /* Standard flex-1 utility */
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.flex.flex-1.overflow-hidden {
+    display: flex;
+    flex: 1 1 0%;
+    overflow: hidden;
+}
+
+.flex-1.flex.flex-col {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+}
+
+.relative {
+    position: relative;
+}
+
+.bg-gray-100 {
+    background-color: #f7fafc; /* Example gray color */
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}

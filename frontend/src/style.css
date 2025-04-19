@@ -1,15 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import "highlight.js/styles/github.css"; /* or obsidian.css if available */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-
-
 body{
     background-color: #f0f0f0;
-    font-family:'Raleway', Arial, sans-serif;
+    font-family:'Lato', Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    /* overflow-y: hidden; */
+}
+
+#root{
+    height: 100vh;
+}
+
+/* Add smooth transitions to common interactive elements */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Add a subtle scale effect on hover/focus for interactive elements */
+button:hover,
+a:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+[role="button"]:hover {
+  transform: scale(1.02);
+}
+
+button:active,
+a:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+[role="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Define a fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply fade-in animation to major sections or components if needed */
+/* Example: Apply to a container div in your components */
+.fade-in-section {
+  animation: fadeIn 0.5s ease-out forwards;
 }
