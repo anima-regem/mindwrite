@@ -33,7 +33,7 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 
 	// Get user's home directory
-	homeDir, err := os.UserHomeDir()
+	homeDir, err := os.UserConfigDir()
 	if err != nil {
 		// Handle error appropriately, maybe log it or return an error
 		// For now, we'll just print it and potentially fallback or exit
